@@ -6,6 +6,8 @@ var urls = [
   'www.wikipedia.org'
 ];
 
+var render = true;
+
 // Render Multiple URLs to file
 
 var RenderUrlsToFile, arrayOfUrls, system;
@@ -47,7 +49,7 @@ RenderUrlsToFile = function(urls, callbackPerUrl, callbackFinal) {
                 file = getFilename();
                 if (status === "success") {
                     return window.setTimeout((function() {
-                        page.render(file);
+                        if (render) page.render(file);
                         return next(status, url, file);
                     }), 200);
                 } else {
@@ -75,7 +77,11 @@ RenderUrlsToFile(urls, (function(status, url, file) {
     if (status !== "success") {
         return console.log("Unable to render '" + url + "'");
     } else {
-        return console.log("Rendered '" + url + "' at '" + file + "'");
+        if (render) {
+            return console.log("Rendered '" + url + "' at '" + file + "'");
+        } else {
+            return console.log("Opened '" + url + "' at '" + file + "'");
+        }
     }
 }), function() {
     return phantom.exit();
