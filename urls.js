@@ -2,8 +2,8 @@
 console.log('Starting');
 
 var urls = [
-  'http://www.example.org',
-  'http://www.cnn.com'
+  'www.example.org',
+  'www.wikipedia.org'
 ];
 
 // Render Multiple URLs to file
@@ -24,7 +24,7 @@ RenderUrlsToFile = function(urls, callbackPerUrl, callbackFinal) {
     webpage = require("webpage");
     page = null;
     getFilename = function() {
-        return "rendermulti-" + urlIndex + ".png";
+        return "../rendermulti-" + urlIndex + ".png";
     };
     next = function(status, url, file) {
         page.close();
@@ -60,17 +60,18 @@ RenderUrlsToFile = function(urls, callbackPerUrl, callbackFinal) {
     };
     return retrieve();
 };
-
+/*
 arrayOfUrls = null;
 
 if (system.args.length > 1) {
     arrayOfUrls = Array.prototype.slice.call(system.args, 1);
 } else {
     console.log("Usage: phantomjs render_multi_url.js [domain.name1, domain.name2, ...]");
-    arrayOfUrls = ["www.google.com", "www.bbc.co.uk", "www.phantomjs.org"];
+    arrayOfUrls = ["www.google.com", "www.bbc.com", "www.phantomjs.org"];
 }
+*/
 
-RenderUrlsToFile(arrayOfUrls, (function(status, url, file) {
+RenderUrlsToFile(urls, (function(status, url, file) {
     if (status !== "success") {
         return console.log("Unable to render '" + url + "'");
     } else {
