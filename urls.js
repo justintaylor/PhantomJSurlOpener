@@ -2,8 +2,8 @@
 console.log('Starting');
 
 var urls = [
-  'www.example.org',
-  'www.wikipedia.org'
+  'http://www.example.org',
+  'http://www.wikipedia.org'
 ];
 
 var render = true;
@@ -44,7 +44,7 @@ RenderUrlsToFile = function(urls, callbackPerUrl, callbackFinal) {
                 height: 600
             };
             page.settings.userAgent = "Phantom.js bot";
-            return page.open("http://" + url, function(status) {
+            return page.open(url, function(status) {
                 var file;
                 file = getFilename();
                 if (status === "success") {
